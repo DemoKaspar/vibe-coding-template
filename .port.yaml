@@ -1,0 +1,17 @@
+identifier: idpbuildingwithkaspar-hello-world
+title: IDP Building with Kaspar - Hello World React App
+description: Demo React application with Humanitec infrastructure orchestration for IDP building session
+blueprint: _service
+properties:
+  type: Frontend
+  language: JavaScript
+  framework: React
+  lifecycle: Development
+  tier: 1
+  hasTests: true
+  hasDockerfile: true
+  hasHelm: true
+relations:
+  team: []
+  domain: []
+  system: []
