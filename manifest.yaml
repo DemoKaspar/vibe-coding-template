@@ -1,0 +1,14 @@
+workloads:
+  main:
+    resources:
+      bucket:
+        type: bucket
+      account:
+        type: k8s-service-account
+      namespace:
+        type: k8s-namespace
+        id: main
+    variables:
+      BUCKET_NAME: ${resources.bucket.outputs.name}
+      SERVICE_ACCOUNT: ${resources.account.outputs.service_account_name}
+      NAMESPACE: ${resources.namespace.outputs.namespace}

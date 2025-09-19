@@ -1,0 +1,19 @@
+replicaCount: 1
+
+image:
+  repository: europe-west3-docker.pkg.dev/htc-demo-00-gcp/humanitec/app
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service: 
+  port: 80
+  targetPort: 3000
+  # The service type is a LoadBalancer so that we can access it from the browser
+  type: LoadBalancer
+
+bucket:
+  name: unset
+queue:
+  name: unset
+
+serviceAccount: unset
