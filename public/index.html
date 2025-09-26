@@ -1,43 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Vibe Coding Template</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .status {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .status-item {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .status-item h3 {
+            margin-bottom: 10px;
+            color: #4ecdc4;
+        }
+        
+        .api-section {
+            text-align: left;
+            margin: 30px 0;
+        }
+        
+        button {
+            background: #4ecdc4;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            margin: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s, transform 0.2s;
+        }
+        
+        button:hover {
+            background: #45b7aa;
+            transform: translateY(-2px);
+        }
+        
+        .response {
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+            white-space: pre-wrap;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 16px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+        }
+        
+        .footer {
+            margin-top: 50px;
+            opacity: 0.7;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Vibe Coding Template</h1>
+        <p class="subtitle">Your app is running! Start building something awesome.</p>
+        
+        <div class="card">
+            <h2>🎯 Template Status</h2>
+            <div class="status" id="status">
+                <div class="status-item">
+                    <h3>🚀 App</h3>
+                    <p>Running successfully</p>
+                </div>
+                <div class="status-item">
+                    <h3>📦 Resources</h3>
+                    <p id="resource-count">Loading...</p>
+                </div>
+                <div class="status-item">
+                    <h3>⚡ API</h3>
+                    <p>Ready to use</p>
+                </div>
+                <div class="status-item">
+                    <h3>🌐 Deployment</h3>
+                    <p>Humanitec + GCP</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card api-section">
+            <h2>🔧 API Testing</h2>
+            <p>Test the example API endpoints:</p>
+            
+            <div style="margin: 20px 0;">
+                <button onclick="testHealth()">🏥 Test Health</button>
+                <button onclick="testInfo()">ℹ️ Get Info</button>
+            </div>
+            
+            <div>
+                <h3>📤 Test Example Endpoint</h3>
+                <input type="text" id="message-input" placeholder="Enter a message..." value="Hello from the frontend!">
+                <button onclick="testExample()">📨 Send Message</button>
+            </div>
+            
+            <div id="api-response" class="response" style="display: none;"></div>
+        </div>
+        
+        <div class="card">
+            <h2>🛠️ Next Steps</h2>
+            <div style="text-align: left;">
+                <p>✅ <strong>Template deployed successfully!</strong></p>
+                <p>🎨 <strong>Customize:</strong> Edit server.js and public/index.html</p>
+                <p>📦 <strong>Add resources:</strong> Update manifest.yaml with databases, queues, etc.</p>
+                <p>🚀 <strong>Deploy:</strong> Push to main branch for auto-deployment</p>
+                <p>🔍 <strong>Monitor:</strong> Check GitHub Actions for deployment status</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>🎮 Built with the Vibe Coding workflow</p>
+            <p>🌟 Deployed via Humanitec to GCP</p>
+        </div>
+    </div>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+    <script>
+        // Load app info on page load
+        window.addEventListener('load', loadAppInfo);
+        
+        async function loadAppInfo() {
+            try {
+                const response = await fetch('/api/info');
+                const data = await response.json();
+                
+                let resourceCount = 0;
+                Object.values(data.resources).forEach(value => {
+                    if (value !== 'Not configured') resourceCount++;
+                });
+                
+                document.getElementById('resource-count').textContent = 
+                    resourceCount > 0 ? `${resourceCount} configured` : 'None configured';
+                    
+            } catch (error) {
+                console.error('Failed to load app info:', error);
+            }
+        }
+        
+        async function testHealth() {
+            try {
+                const response = await fetch('/api/health');
+                const data = await response.json();
+                showResponse('Health Check', data);
+            } catch (error) {
+                showResponse('Health Check Error', { error: error.message });
+            }
+        }
+        
+        async function testInfo() {
+            try {
+                const response = await fetch('/api/info');
+                const data = await response.json();
+                showResponse('App Info', data);
+            } catch (error) {
+                showResponse('Info Error', { error: error.message });
+            }
+        }
+        
+        async function testExample() {
+            const message = document.getElementById('message-input').value;
+            if (!message.trim()) {
+                alert('Please enter a message first!');
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/example', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message })
+                });
+                const data = await response.json();
+                showResponse('Example API Response', data);
+            } catch (error) {
+                showResponse('Example API Error', { error: error.message });
+            }
+        }
+        
+        function showResponse(title, data) {
+            const responseDiv = document.getElementById('api-response');
+            responseDiv.innerHTML = `<strong>${title}:</strong>\n${JSON.stringify(data, null, 2)}`;
+            responseDiv.style.display = 'block';
+        }
+    </script>
+</body>
 </html>
